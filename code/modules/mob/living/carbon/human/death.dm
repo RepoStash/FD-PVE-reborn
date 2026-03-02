@@ -45,6 +45,8 @@
 		species?.handle_dead_death(src, gibbed)
 		return
 
+	vr_disconnect()
+
 	GLOB.alive_human_list -= src
 
 	if(!gibbed)
@@ -136,3 +138,13 @@
 
 	update_execute_hud()
 	*/
+
+/mob/living/carbon/human/proc/vr_disconnect()
+	// Come out of VR right before you die, how depressing - geeves
+	// Also come out of VR if your VR body dies
+	if(vr_mob || old_mob)
+		body_return()
+
+	if(remote_network)
+		SSvirtualreality.remove_robot(src, remote_network)
+		remote_network = null

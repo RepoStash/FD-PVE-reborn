@@ -163,3 +163,14 @@
 			COOLDOWN_START(src, panel_emote_cooldown, 2.5 SECONDS)
 			usr.emote(initial(path.key))
 			return TRUE
+
+/mob/living/carbon/human/joe/remote/Initialize(mapload)
+	. = ..(mapload, "Remote Unbranded Frame")
+
+	real_name = "Remote Robot [pick("Delta", "Theta", "Alpha")]-[rand(0, 999)]"
+	name = real_name
+	if(mind)
+		mind.name = real_name
+
+	remote_network = "remoterobots"
+	SSvirtualreality.add_robot(src, remote_network)

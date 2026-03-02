@@ -78,8 +78,8 @@
 		/datum/action/xeno_action/onclick/tacmap,
 	)
 
-/mob/living/carbon/xenomorph/boiler/Initialize(mapload, mob/living/carbon/xenomorph/oldxeno, h_number)
-	. = ..()
+/mob/living/carbon/xenomorph/boiler/Initialize(mapload, mob/living/carbon/xenomorph/oldxeno, h_number, ai_hard_off = FALSE)
+	. = ..(mapload, oldxeno, h_number, ai_hard_off)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)
 	smoke.cause_data = create_cause_data(initial(caste_type), src)
@@ -98,3 +98,14 @@
 // No special behavior for boilers
 /datum/behavior_delegate/boiler_base
 	name = "Base Boiler Behavior Delegate"
+
+/mob/living/carbon/xenomorph/boiler/remote/Initialize(mapload, mob/living/carbon/xenomorph/xeno, ai_hard_off = TRUE)
+	. = ..(mapload, null, null, ai_hard_off)
+
+	real_name = "Remote Xenomorph [pick("Delta", "Theta", "Alpha")]-[rand(0, 999)]"
+	name = real_name
+	if(mind)
+		mind.name = real_name
+
+	remote_network = "remotexenos"
+	SSvirtualreality.add_robot(src, remote_network)
