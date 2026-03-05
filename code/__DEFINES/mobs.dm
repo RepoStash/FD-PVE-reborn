@@ -341,6 +341,7 @@ GLOBAL_LIST_INIT(default_xeno_onmob_icons, list(
 		/mob/living/carbon/xenomorph/runner = 'icons/mob/xenos/onmob/runner.dmi',
 		/mob/living/carbon/xenomorph/praetorian = 'icons/mob/xenos/onmob/praetorian.dmi',
 		/mob/living/carbon/xenomorph/drone = 'icons/mob/xenos/onmob/drone.dmi',
+		/mob/living/carbon/xenomorph/drone/remote = 'icons/mob/xenos/onmob/drone_remote.dmi',
 		/mob/living/carbon/xenomorph/warrior = 'icons/mob/xenos/onmob/warrior.dmi',
 		/mob/living/carbon/xenomorph/defender = 'icons/mob/xenos/onmob/defender.dmi',
 		/mob/living/carbon/xenomorph/sentinel = 'icons/mob/xenos/onmob/sentinel.dmi',

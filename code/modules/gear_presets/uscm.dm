@@ -175,6 +175,9 @@
 	name = parent_type::name + " (E1 Rank)"
 	paygrades = list(PAY_SHORT_ME1 = JOB_PLAYTIME_TIER_0)
 
+/datum/equipment_preset/uscm/sg/load_gear(mob/living/carbon/human/new_human)
+	ADD_TRAIT(new_human, TRAIT_VR_USER, "placeholder")
+
 /datum/equipment_preset/uscm/sg/upp
 	name = "UPP Squad Machinegunner"
 	access = list(ACCESS_UPP_GENERAL, ACCESS_UPP_MACHINEGUN)

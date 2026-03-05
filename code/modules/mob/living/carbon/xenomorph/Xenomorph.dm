@@ -345,6 +345,8 @@
 	var/atom/movable/vis_obj/xeno_pack/backpack_icon_holder
 	/// If TRUE, the xeno cannot slash anything
 	var/cannot_slash = FALSE
+	// If specified, will always default to that name.
+	var/preset_name = null
 
 /mob/living/carbon/xenomorph/Initialize(mapload, mob/living/carbon/xenomorph/old_xeno, hivenumber, ai_hard_off = FALSE)
 
@@ -578,6 +580,11 @@
 	//Im putting this in here, because this proc gets called when a player inhabits a SSD xeno and it needs to go somewhere (sorry)
 	hud_set_marks()
 
+	if(preset_name)
+		change_real_name(src, preset_name)
+		in_hive.hive_ui.update_xeno_info()
+		return
+
 	var/name_prefix = in_hive.prefix
 	var/name_client_prefix = ""
 	var/name_client_postfix = ""
@@ -696,6 +703,8 @@
 	if(tracked_marker)
 		tracked_marker.xenos_tracking -= src
 		tracked_marker = null
+
+	vr_disconnect()
 
 	if(mind)
 		mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.

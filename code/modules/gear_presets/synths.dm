@@ -687,6 +687,41 @@
 		new_human.change_real_name(new_human, "Dzho Automaton №[rand(9)][rand(9)][ascii2text(rand(65, 90))][ascii2text(rand(65, 90))]")
 	else
 		new_human.change_real_name(new_human, "Working Joe #[rand(100)][rand(100)]")
+
+/datum/equipment_preset/synth/working_joe/remote
+	name = "USCM Automaton"
+	flags = EQUIPMENT_PRESET_EXTRA
+	assignment = "USCM Automaton"
+
+/datum/equipment_preset/synth/working_joe/remote/load_gear(mob/living/carbon/human/new_human)
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/solardevils(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(new_human), WEAR_FEET)
+
+	var/mob/living/carbon/human/joe/remote/joe = new_human
+	if(joe)
+		joe.remote_network = "remoterobots"
+		SSvirtualreality.add_robot(joe, joe.remote_network)
+
+/datum/equipment_preset/synth/working_joe/remote/load_name(mob/living/carbon/human/new_human, randomise)
+	new_human.change_real_name(new_human, "USCM Combat Automaton #[rand(50)]")
+
+/datum/equipment_preset/synth/working_joe/remote/load_race(mob/living/carbon/human/new_human)
+	. = ..()
+	new_human.set_species(joe_type)
+	new_human.h_style = "Bald"
+	new_human.f_style = "Shaved"
+	new_human.r_eyes = 0
+	new_human.g_eyes = 0
+	new_human.b_eyes = 0
+	new_human.r_hair = 100
+	new_human.g_hair = 88
+	new_human.b_hair = 74
+	new_human.r_facial = 255
+	new_human.g_facial = 255
+	new_human.b_facial = 255
+
+
 //*****************************************************************************************************/
 
 /datum/equipment_preset/synth/survivor/cultist_synth

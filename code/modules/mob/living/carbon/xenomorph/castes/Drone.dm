@@ -94,3 +94,30 @@
 
 /mob/living/carbon/xenomorph/drone/init_movement_handler()
 	return new /datum/xeno_ai_movement/drone(src)
+
+/mob/living/carbon/xenomorph/drone/remote
+	caste_type = XENO_CASTE_DRONE
+	name = XENO_CASTE_DRONE
+	desc = "Chitinous monstrosity with headset on his head."
+	icon = 'icons/mob/xenos/drone_remote.dmi'
+	icon_xeno = 'icons/mob/xenos/drone_remote.dmi'
+	icon_state = "Drone Walking"
+	gib_chance = 0
+	lock_evolve = TRUE
+	hivenumber = XENO_HIVE_TAMED
+
+/mob/living/carbon/xenomorph/drone/remote/Initialize(mapload, mob/living/carbon/xenomorph/xeno, ai_hard_off = TRUE)
+	. = ..(mapload, null, null, ai_hard_off)
+
+	preset_name = "Remote Xenomorph [pick("Delta", "Theta", "Alpha")]-[rand(0, 999)]"
+	generate_name()
+
+	name = preset_name
+
+	if(mind)
+		mind.name = preset_name
+
+	remote_network = "remotexenos"
+	SSvirtualreality.add_robot(src, remote_network)
+
+	ADD_TRAIT(src, TRAIT_OPPOSABLE_THUMBS, TRAIT_SOURCE_HIVE)

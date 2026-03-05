@@ -139,7 +139,7 @@
 	update_execute_hud()
 	*/
 
-/mob/living/carbon/human/proc/vr_disconnect()
+/mob/living/carbon/proc/vr_disconnect()
 	// Come out of VR right before you die, how depressing - geeves
 	// Also come out of VR if your VR body dies
 	if(vr_mob || old_mob)

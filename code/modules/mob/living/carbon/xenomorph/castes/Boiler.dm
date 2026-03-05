@@ -98,14 +98,3 @@
 // No special behavior for boilers
 /datum/behavior_delegate/boiler_base
 	name = "Base Boiler Behavior Delegate"
-
-/mob/living/carbon/xenomorph/boiler/remote/Initialize(mapload, mob/living/carbon/xenomorph/xeno, ai_hard_off = TRUE)
-	. = ..(mapload, null, null, ai_hard_off)
-
-	real_name = "Remote Xenomorph [pick("Delta", "Theta", "Alpha")]-[rand(0, 999)]"
-	name = real_name
-	if(mind)
-		mind.name = real_name
-
-	remote_network = "remotexenos"
-	SSvirtualreality.add_robot(src, remote_network)

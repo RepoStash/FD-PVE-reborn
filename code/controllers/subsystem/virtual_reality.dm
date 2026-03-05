@@ -6,7 +6,7 @@
 	flags = SS_NO_FIRE
 
 	// IPC BODIES
-	var/list/robotnetworks = list("remoterobots")
+	var/list/robotnetworks = list("remoterobots", "remotexenos")
 	var/list/robots = list()
 
 /datum/controller/subsystem/virtualreality/New()
@@ -23,36 +23,42 @@
 
 /datum/controller/subsystem/virtualreality/proc/remove_robot(mob/living/robot, network)
 	if(robot && network)
-		robots[network].Remove(robot)
+		robots[network] -= robot
 
 /mob/living/
 	var/mob/living/vr_mob = null // In which mob is our mind
 	var/mob/living/old_mob = null // Which mob is our old mob
 
-// Return to our original body
-/mob/living/carbon/proc/body_return()
+/mob/living/carbon/verb/vr_return()
 	set name = "Return to Body"
 	set desc = "Returns you to your original body."
 	set category = "IC"
 
+	body_return()
+
+// Return to our original body
+/mob/living/carbon/proc/body_return()
 	if(!vr_mob && !old_mob)
 		return
 
 	if(vr_mob)
 		ckey = vr_mob.ckey
+		vr_mob.remove_client_color_matrix("vr_effect", 1 SECONDS)
+		vr_mob.clear_fullscreen("vr_effect", 0.5 SECONDS)
 		vr_mob.ckey = null
 		vr_mob.old_mob = null
 		vr_mob = null
-		to_chat(src, SPAN_NOTICE("System exited safely, we hope you enjoyed your stay."))
+		to_chat(src, SPAN_NOTICE(FONT_SIZE_LARGE("System exited safely, we hope you enjoyed your stay.")))
 	if(old_mob)
+		old_mob.remove_client_color_matrix("vr_effect", 1 SECONDS)
+		old_mob.clear_fullscreen("vr_effect", 0.5 SECONDS)
 		old_mob.ckey = ckey
 		ckey = null
 		old_mob.vr_mob = null
-		to_chat(old_mob, SPAN_NOTICE("System exited safely, we hope you enjoyed your stay."))
+		to_chat(old_mob, SPAN_NOTICE(FONT_SIZE_LARGE("System exited safely, we hope you enjoyed your stay.")))
 		old_mob = null
 	else
-		to_chat(src, SPAN_ALERT("Interface error, you cannot exit the system at this time."))
-		to_chat(src, SPAN_WARNING("Ahelp to get back into your body, a bug has occurred."))
+		to_chat(src, SPAN_ALERT(FONT_SIZE_LARGE("Interface error, you cannot exit the system at this time.")))
 
 // Handles saving of the original mob and assigning the new mob
 /datum/controller/subsystem/virtualreality/proc/mind_transfer(mob/living/M, mob/living/target)
@@ -65,8 +71,11 @@
 
 	target.languages = M.languages
 
-	to_chat(target, SPAN_NOTICE("Connection established, system suite active and calibrated."))
-	to_chat(target, SPAN_WARNING("To exit this mode, use the \"Return to Body\" verb in the IC tab."))
+	target.add_client_color_matrix("vr_effect", 99, color_matrix_multiply(color_matrix_saturation(0), color_matrix_from_string("#eeeeee")))
+	target.overlay_fullscreen("vr_effect", /atom/movable/screen/fullscreen/flash/noise/nvg)
+	playsound(target, 'sound/mecha/LongSyndiActivation.ogg', 50)
+	to_chat(target, SPAN_NOTICE(FONT_SIZE_LARGE("Connection established, system suite active and calibrated.")))
+	to_chat(target, SPAN_WARNING(FONT_SIZE_LARGE("To exit this mode, use the \"Return to Body\" verb in the IC tab.")))
 
 /datum/controller/subsystem/virtualreality/proc/robot_selection(user, network)
 	var/list/robot = list()
@@ -83,7 +92,7 @@
 		robot[R.name] = R
 
 	if(robot.len == 1)
-		to_chat(user, SPAN_WARNING("No active remote robots are available."))
+		to_chat(user, SPAN_WARNING(FONT_SIZE_LARGE("No active remote robots are available.")))
 		return
 
 	var/desc = input("Please select a remote control robot to take over.", "Remote Robot Selection") in robot|null

@@ -233,6 +233,8 @@
 #define TRAIT_HARDCORE "t_hardcore"
 /// If the mob is able to use the vulture rifle or spotting scope
 #define TRAIT_VULTURE_USER "t_vulture_user"
+/// If the mob is able to use the VR
+#define TRAIT_VR_USER "t_vr_user"
 /// If the mob is currently loading a tutorial
 #define TRAIT_IN_TUTORIAL "t_in_tutorial"
 /// If the mob is cloaked in any form
@@ -326,6 +328,7 @@ GLOBAL_LIST_INIT(mob_traits, list(
 	TRAIT_REAGENT_SCANNER,
 	TRAIT_ABILITY_BURROWED,
 	TRAIT_VULTURE_USER,
+	TRAIT_VR_USER,
 	TRAIT_IN_TUTORIAL,
 	TRAIT_SPEC_KIT,
 	TRAIT_SPEC_VENDOR,
@@ -367,6 +370,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_LISPING" = TRAIT_LISPING,
 		"TRAIT_CANNOT_EAT" = TRAIT_CANNOT_EAT,
 		"TRAIT_VULTURE_USER" = TRAIT_VULTURE_USER,
+		"TRAIT_VR_USER" = TRAIT_VR_USER,
 		"TRAIT_CLOAKED" = TRAIT_CLOAKED,
 		"TRAIT_SPEC_KIT" = TRAIT_SPEC_KIT,
 		"TRAIT_SPEC_VENDOR" = TRAIT_SPEC_VENDOR,
