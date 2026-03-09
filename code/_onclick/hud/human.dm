@@ -98,6 +98,9 @@
 	draw_zone_sel(ui_datum, ui_alpha, ui_color)
 	draw_gun_related(ui_datum, ui_alpha)
 
+	draw_re13_hp(ui_datum)
+	draw_re13_stam(ui_datum)
+
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"

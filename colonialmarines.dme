@@ -2460,6 +2460,8 @@
 #include "code\modules\projectiles\magazines\shotguns.dm"
 #include "code\modules\projectiles\magazines\smgs.dm"
 #include "code\modules\projectiles\magazines\specialist.dm"
+#include "code\modules\re13\human\base.dm"
+#include "code\modules\re13\human\interface.dm"
 #include "code\modules\reagents\Chemistry-Colours.dm"
 #include "code\modules\reagents\Chemistry-Generator.dm"
 #include "code\modules\reagents\Chemistry-Holder.dm"

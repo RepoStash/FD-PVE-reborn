@@ -521,3 +521,5 @@ GLOBAL_LIST(trait_name_map)
 #define THROATSLIT_TRAIT "throat_slit"
 /// traits from wall hiding
 #define WALL_HIDING_TRAIT "wallhiding"
+
+#define REDEATH_TRAIT "redeath"

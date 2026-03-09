@@ -15,6 +15,16 @@
 
 	..()
 
+	//RE13 SLOPCODE
+	if(re13_stam < re13_maxstam && re13_damage_state != "DEAD")
+		re13_stam_recharge_time -= 1
+	if(re13_stam_recharge_time <= 0)
+		re13_stam += 0.5
+		re13_stam_recharge_time = initial(re13_stam_recharge_time)
+		if(re13_stam_overuse)
+			re13_stam_overuse = FALSE
+	//RE13 SLOPCODE
+
 	blinded = FALSE
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 

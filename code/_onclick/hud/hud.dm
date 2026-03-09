@@ -161,6 +161,9 @@
 	gun_move_icon = null
 	gun_run_icon = null
 
+	re13_hp = null
+	re13_stam = null
+
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)
 
