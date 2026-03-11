@@ -1,9 +1,4 @@
 #define COMSIG_KB_HUMAN_RE13_INVENTORY "keybinding_human_re13_inventory"
-#define COMSIG_KB_HUMAN_SWORD_RANGED "keybinding_human_sword_ranged"
-#define COMSIG_KB_HUMAN_SWORD_AOE "keybinding_human_sword_aoe"
-
-#define COMSIG_KB_HUMAN_SWORD_PARRY "keybinding_human_sword_parry"
-#define COMSIG_KB_HUMAN_SWORD_DIRECTIONALS "keybinding_human_sword_directionals"
 
 #define CATEGORY_RE13 "RESIDENT EVIL"
 
@@ -34,6 +29,13 @@
 	var/re13_stam_overuse = FALSE
 
 	var/re13_player = TRUE
+
+	var/obj/item/re13_itemslot1
+	var/obj/item/re13_itemslot2
+	var/obj/item/re13_itemslot3
+	var/obj/item/re13_itemslot4
+	var/obj/item/re13_itemslot5
+	var/obj/item/re13_itemslot6
 
 /mob/living/carbon/human/proc/re13_death()
 	stop_pulling()

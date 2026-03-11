@@ -164,6 +164,13 @@
 	re13_hp = null
 	re13_stam = null
 
+	re13_itemslot = null
+	re13_itemslot2 = null
+	re13_itemslot3 = null
+	re13_itemslot4 = null
+	re13_itemslot5 = null
+	re13_itemslot6 = null
+
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)
 

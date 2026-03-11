@@ -101,6 +101,13 @@
 	draw_re13_hp(ui_datum)
 	draw_re13_stam(ui_datum)
 
+	draw_re13_itemslot(ui_datum)
+	re13_itemslot2(ui_datum)
+	re13_itemslot3(ui_datum)
+	re13_itemslot4(ui_datum)
+	re13_itemslot5(ui_datum)
+	re13_itemslot6(ui_datum)
+
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
